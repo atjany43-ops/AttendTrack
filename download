@@ -1,0 +1,23 @@
+# Скомпилированные файлы
+*.o
+*.obj
+*.exe
+*.out
+attendtrack
+
+# Отчёты, сгенерированные программой
+*.csv
+*.json
+
+# Директории сборки
+build/
+cmake-build-*/
+
+# IDE / редакторы
+.vscode/
+.idea/
+*.swp
+
+# ОС
+.DS_Store
+Thumbs.db
