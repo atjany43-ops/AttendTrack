@@ -1,0 +1,48 @@
+@startuml er-diagram
+skinparam linetype ortho
+
+entity "Groups" as groups {
+  * id : INTEGER <<PK>>
+  --
+  name : TEXT
+}
+
+entity "Students" as students {
+  * id : INTEGER <<PK>>
+  --
+  last_name : TEXT
+  first_name : TEXT
+  middle_name : TEXT
+  group_id : INTEGER <<FK>>
+  login : TEXT
+  password_hash : TEXT
+}
+
+entity "Lessons" as lessons {
+  * id : INTEGER <<PK>>
+  --
+  discipline : TEXT
+  group_id : INTEGER <<FK>>
+  lesson_date : TEXT
+}
+
+entity "Attendance" as attendance {
+  * id : INTEGER <<PK>>
+  --
+  student_id : INTEGER <<FK>>
+  lesson_id : INTEGER <<FK>>
+  status : TEXT
+}
+
+groups ||--o{ students : "1 группа — N студентов"
+groups ||--o{ lessons  : "1 группа — N занятий"
+students ||--o{ attendance : "1 студент — N отметок"
+lessons  ||--o{ attendance : "1 занятие — N отметок"
+
+note right of attendance
+  Attendance реализует связь
+  Students M:N Lessons
+  через две связи 1:N
+end note
+
+@enduml
